@@ -301,8 +301,8 @@
         <p data-en><b>Shooting:</b> accurate placement-based finishing with solid power. <b>Passing:</b> firm over short-to-medium range; effective long passing with room to grow. <b>Mobility:</b> explosive acceleration over the first 10 metres.</p>
       </div>
       <div><h3 data-es>Académico y personal</h3><h3 data-en>Academic & personal</h3>
-        <p data-es>Bachillerato Internacional (IB) en Rossall School, graduación 2027. Más de 350 horas de entrenamiento continuo — resiliencia física y compromiso. Sin lesiones graves registradas.</p>
-        <p data-en>International Baccalaureate (IB) at Rossall School, graduating 2027. Over 350 hours of continuous training — physical resilience and commitment. No serious injuries on record.</p>
+        <p data-es>Bachillerato Internacional (IB) en <a class="lnk" href="https://www.rossall.org.uk/" target="_blank" rel="noopener">Rossall School</a>, graduación 2027. Más de 350 horas de entrenamiento continuo — resiliencia física y compromiso. Sin lesiones graves registradas.</p>
+        <p data-en>International Baccalaureate (IB) at <a class="lnk" href="https://www.rossall.org.uk/" target="_blank" rel="noopener">Rossall School</a>, graduating 2027. Over 350 hours of continuous training — physical resilience and commitment. No serious injuries on record.</p>
       </div>
     </div>
   </div>
@@ -348,3 +348,14 @@ function setLang(l){
   document.getElementById('btn-es').classList.toggle('active',l==='es');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   try{localStorage.setItem('jj_lang',l)}catch(e){}
+}
+(function(){
+  var saved;try{saved=localStorage.getItem('jj_lang')}catch(e){}
+  var nav=(navigator.language||'es').slice(0,2);
+  setLang(saved || (nav==='en'?'en':'es'));
+  var nav2=document.getElementById('nav');
+  addEventListener('scroll',function(){nav2.classList.toggle('solid',scrollY>60)},{passive:true});
+})();
+</script>
+</body>
+</html>
