@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juan José Fernández Patín — Nº 10</title>
-<meta name="description" content="Sitio oficial de Juan José Fernández Patín — mediocampista ofensivo (Nº 10), 16 años. Rossall School (Inglaterra) · Real Valladolid.">
+<meta name="description" content="Sitio oficial de Juan José Fernández Patín — mediocampista ofensivo (Nº 10), 17 años. Rossall School (Inglaterra) · Real Valladolid.">
 <meta name="author" content="Juan José Fernández Patín">
 <meta name="theme-color" content="#0a0a0a">
-<meta property="og:title" content="Juan José Fernández Patín · Nº 10 · 16 años">
+<meta property="og:title" content="Juan José Fernández Patín · Nº 10 · 17 años">
 <meta property="og:description" content="Mediocampista ofensivo zurdo. Creador de juego versátil. Rossall School (ENG) · Real Valladolid.">
 <meta property="og:type" content="profile">
 <meta property="og:image" content="juanjo.jpg">
@@ -192,7 +192,7 @@
   <div class="bg"></div>
   <div class="grad"></div>
   <div class="wrap">
-    <div class="kick"><span data-es>Mediocampista ofensivo · 16 años</span><span data-en>Attacking midfielder · Age 16</span></div>
+    <div class="kick"><span data-es>Mediocampista ofensivo · 17 años</span><span data-en>Attacking midfielder · Age 17</span></div>
     <h1>Juan José<br>Fernández<br>Patín <span class="gold">10</span></h1>
     <p class="tagline" data-es>El número 10 que crea el juego. Visión, regate y carácter — formándose entre Inglaterra y España.</p>
     <p class="tagline" data-en>The number 10 who makes the game. Vision, dribbling and character — developing between England and Spain.</p>
@@ -221,7 +221,7 @@
     <div class="about-grid">
       <div>
         <h2 class="sec-h"><span data-es>Arquitecto<br>del <span class="o">ataque</span></span><span data-en>Architect<br>of the <span class="o">attack</span></span></h2>
-        <p data-es>Mexicano y español, de 16 años, formándose en <b>Rossall School</b> (Inglaterra). Como número 10 natural, lee espacios, encuentra líneas de pase entre defensas y mantiene la presión alta.</p>
+        <p data-es>Mexicano y español, de 17 años, formándose en <b>Rossall School</b> (Inglaterra). Como número 10 natural, lee espacios, encuentra líneas de pase entre defensas y mantiene la presión alta.</p>
         <p data-es>Su versatilidad le permite brillar como extremo derecho o como delantero. Con fluidez en español e inglés y un carácter disciplinado, está listo para el fútbol internacional.</p>
         <p data-en>Mexican and Spanish, 16, developing at <b>Rossall School</b> (England). A natural number 10, he reads space, finds passing lanes between defenders and sustains high pressure.</p>
         <p data-en>His versatility lets him shine as a right winger or forward. Fluent in Spanish and English with a disciplined character, he is ready for international football.</p>
@@ -229,7 +229,9 @@
           <div class="qf"><div class="l" data-es>Posición</div><div class="l" data-en>Position</div><div class="v">Nº 10 · MCO</div></div>
           <div class="qf"><div class="l" data-es>Pie</div><div class="l" data-en>Foot</div><div class="v" data-es>Zurdo</div><div class="v" data-en>Left</div></div>
           <div class="qf"><div class="l" data-es>Altura / Peso</div><div class="l" data-en>Height / Weight</div><div class="v">1.75m · 71.5kg</div></div>
+          <div class="qf"><div class="l" data-es>Nacimiento</div><div class="l" data-en>Date of birth</div><div class="v">24/04/2009</div></div>
           <div class="qf"><div class="l">Club</div><div class="v">Rossall School</div></div>
+          <div class="qf"><div class="l" data-es>Nacionalidad</div><div class="l" data-en>Nationality</div><div class="v" data-es>México / España</div><div class="v" data-en>Mexico / Spain</div></div>
         </div>
       </div>
       <div class="img"><img src="action.jpg" alt="Juan José Fernández Patín en acción"></div>
@@ -343,14 +345,3 @@ function setLang(l){
   document.getElementById('btn-es').classList.toggle('active',l==='es');
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   try{localStorage.setItem('jj_lang',l)}catch(e){}
-}
-(function(){
-  var saved;try{saved=localStorage.getItem('jj_lang')}catch(e){}
-  var nav=(navigator.language||'es').slice(0,2);
-  setLang(saved || (nav==='en'?'en':'es'));
-  var nav2=document.getElementById('nav');
-  addEventListener('scroll',function(){nav2.classList.toggle('solid',scrollY>60)},{passive:true});
-})();
-</script>
-</body>
-</html>
