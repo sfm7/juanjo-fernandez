@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Juan José Fernández Patín — Nº 10</title>
 <meta name="description" content="Sitio oficial de Juan José Fernández Patín — mediocampista ofensivo (Nº 10), 17 años. Rossall School (Inglaterra) · Real Valladolid.">
 <meta name="author" content="Juan José Fernández Patín">
@@ -10,7 +10,7 @@
 <meta property="og:title" content="Juan José Fernández Patín · Nº 10 · 17 años">
 <meta property="og:description" content="Mediocampista ofensivo zurdo. Creador de juego versátil. Rossall School (ENG) · Real Valladolid.">
 <meta property="og:type" content="profile">
-<meta property="og:image" content="juanjo.jpg">
+<meta property="og:image" content="https://sfm7.github.io/juanjo-fernandez/juanjo.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0a'/><text x='50' y='72' font-size='62' fill='%23c9a227' font-family='Arial' font-weight='bold' text-anchor='middle'>10</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +27,8 @@
   html{scroll-behavior:smooth}
   body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);
     line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
-  h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:.92}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+  h1,h2,h3,.display{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.005em;line-height:1.06}
   .ox{font-family:'Oswald',sans-serif}
   .kick{font-family:'Oswald';font-weight:600;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold)}
   a{color:inherit}
@@ -36,56 +36,80 @@
   .lnk:hover{color:var(--gold2);border-color:var(--gold2)}
   .quickfacts .v .lnk{font-family:inherit}
 
+  /* ===== Reveal on scroll ===== */
+  .rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .rev.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rev{opacity:1;transform:none;transition:none}
+    .marquee .track{animation:none}
+    .scrollcue .bar{animation:none}
+  }
+
+  /* ===== Nav ===== */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:.35s;
     background:linear-gradient(180deg,rgba(0,0,0,.6),transparent)}
   header.nav.solid{background:rgba(10,10,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
+  header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
   .mono{font-family:'Anton';font-size:22px;letter-spacing:.02em}
   .mono i{font-style:normal;color:var(--gold)}
-  .lang{display:flex;gap:0;align-items:center;font-family:'Oswald';font-weight:600;font-size:13px;letter-spacing:.15em}
-  .lang button{background:none;border:0;color:var(--muted);cursor:pointer;padding:6px 9px;transition:.2s}
-  .lang button.active{color:var(--gold)}
-  .lang .sep{color:var(--line)}
 
+  /* Lang switch — segmented pill */
+  .lang{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid var(--line);
+    border-radius:999px;background:rgba(10,10,10,.55);backdrop-filter:blur(8px);
+    font-family:'Oswald';font-weight:600;font-size:12px;letter-spacing:.15em}
+  .lang button{background:none;border:0;color:var(--muted);cursor:pointer;border-radius:999px;
+    padding:7px 16px;min-height:32px;transition:color .2s,background .25s;line-height:1}
+  .lang button:hover{color:var(--ink)}
+  .lang button.active{color:#0a0a0a;background:linear-gradient(135deg,var(--gold),var(--gold2))}
+  .lang button:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+
+  /* ===== Hero ===== */
   .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
-  .hero .bg{position:absolute;inset:0;background:url('juanjo.jpg') center 18%/cover no-repeat;
+  .hero .bg{position:absolute;inset:0;background:url('https://sfm7.github.io/juanjo-fernandez/juanjo.jpg') center 18%/cover no-repeat;
     filter:grayscale(18%) contrast(1.05) brightness(.92)}
   .hero .grad{position:absolute;inset:0;
     background:linear-gradient(180deg,rgba(10,10,10,.45) 0%,rgba(10,10,10,.15) 35%,rgba(10,10,10,.85) 80%,#0a0a0a 100%),
                linear-gradient(90deg,rgba(10,10,10,.7),transparent 60%)}
-  .hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:70px}
-  .hero .kick{margin-bottom:20px}
-  .hero h1{font-size:clamp(58px,12.5vw,168px)}
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:clamp(56px,9vh,90px)}
+  .hero .kick{margin-bottom:18px;display:inline-flex;align-items:center;gap:14px}
+  .hero .kick::before{content:"";width:34px;height:1px;background:var(--gold)}
+  .hero h1{font-size:clamp(52px,12.5vw,168px)}
   .hero h1 .gold{color:var(--gold)}
-  .hero .tagline{margin-top:24px;font-family:'Oswald';font-weight:300;font-size:clamp(16px,2.2vw,22px);
+  .hero .tagline{margin-top:22px;font-family:'Oswald';font-weight:300;font-size:clamp(15px,2.2vw,22px);
     color:var(--ink);max-width:560px;letter-spacing:.01em}
-  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;
+  .scrollcue{position:absolute;bottom:max(22px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:3;
     font-family:'Oswald';font-size:11px;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;
     display:flex;flex-direction:column;align-items:center;gap:8px}
   .scrollcue .bar{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 
+  /* ===== Marquee ===== */
   .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;
-    background:var(--bg2);padding:16px 0}
+    background:var(--bg2);padding:14px 0}
   .marquee .track{display:flex;gap:40px;white-space:nowrap;animation:scroll 26s linear infinite;width:max-content}
-  .marquee span{font-family:'Anton';font-size:20px;text-transform:uppercase;color:var(--muted);letter-spacing:.04em}
+  .marquee span{font-family:'Anton';font-size:clamp(15px,2.4vw,20px);text-transform:uppercase;color:var(--muted);letter-spacing:.04em}
   .marquee span b{color:var(--gold);font-weight:400}
   @keyframes scroll{to{transform:translateX(-50%)}}
 
-  section{padding:110px 0}
+  section{padding:clamp(70px,11vw,110px) 0}
   .eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:30px}
   .eyebrow .ln{height:1px;width:54px;background:var(--gold)}
   .eyebrow .kick{color:var(--gold)}
   .sec-h{font-size:clamp(34px,6vw,76px)}
   .sec-h .o{-webkit-text-stroke:1px var(--muted2);color:transparent}
 
+  /* ===== Stats ===== */
   .stats{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
   .stats .grid{display:grid;grid-template-columns:repeat(3,1fr)}
-  .stat{padding:70px 30px;text-align:center;border-right:1px solid var(--line)}
+  .stat{padding:clamp(38px,7vw,70px) clamp(10px,3vw,30px);text-align:center;border-right:1px solid var(--line);
+    position:relative;transition:background .3s}
+  .stat:hover{background:rgba(201,162,39,.04)}
   .stat:last-child{border-right:0}
-  .stat .n{font-family:'Anton';font-size:clamp(64px,11vw,128px);color:var(--gold);line-height:.85}
-  .stat .l{font-family:'Oswald';font-weight:500;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:18px}
+  .stat .n{font-family:'Anton';font-size:clamp(46px,10vw,128px);color:var(--gold);line-height:1}
+  .stat .l{font-family:'Oswald';font-weight:500;font-size:clamp(10px,1.6vw,13px);letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:16px}
 
+  /* ===== About ===== */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
   .about-grid .img{position:relative}
   .about-grid img{width:100%;display:block;filter:grayscale(20%) contrast(1.05) brightness(.95)}
@@ -93,10 +117,11 @@
   .about p{color:var(--muted);font-size:16.5px;margin-top:22px;line-height:1.8}
   .about p b{color:var(--ink);font-weight:600}
   .quickfacts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);margin-top:34px;border:1px solid var(--line)}
-  .quickfacts .qf{background:var(--bg);padding:18px 20px}
+  .quickfacts .qf{background:var(--bg);padding:16px 18px}
   .quickfacts .l{font-family:'Oswald';font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2)}
-  .quickfacts .v{font-family:'Oswald';font-weight:500;font-size:19px;margin-top:4px}
+  .quickfacts .v{font-family:'Oswald';font-weight:500;font-size:clamp(16px,2vw,19px);margin-top:4px}
 
+  /* ===== Attributes ===== */
   .attrs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
   .attr{padding:46px 36px 46px 0;border-bottom:1px solid var(--line)}
   .attr:not(:last-child){border-right:1px solid var(--line);padding-right:40px}
@@ -112,11 +137,15 @@
   .lists li .tx{font-size:15.5px;color:var(--muted)}
   .lists li .tx b{color:var(--ink);font-family:'Oswald';font-weight:600;letter-spacing:.01em}
 
-  table{width:100%;border-collapse:collapse}
+  /* ===== Table ===== */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;min-width:560px}
   thead th{font-family:'Oswald';font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
     color:var(--muted2);text-align:left;padding:0 18px 16px;border-bottom:1px solid var(--gold)}
   thead th.r,td.r{text-align:right}
   tbody td{padding:22px 18px;border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}
+  tbody tr{transition:background .25s}
+  tbody tr:hover{background:rgba(201,162,39,.04)}
   tbody .comp{font-family:'Oswald';font-weight:600;font-size:18px;color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
   tbody td.r{font-family:'Anton';font-size:22px;color:var(--ink)}
   .yr{color:var(--muted2);font-size:12px}
@@ -133,48 +162,94 @@
 
   .video-box{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border:1px solid var(--line)}
   .video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vplay{position:absolute;inset:0;width:100%;height:100%;background:none;border:0;cursor:pointer;padding:0;display:block}
+  .vplay .vthumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(15%) contrast(1.05) brightness(.75);transition:filter .3s,transform .4s}
+  .vplay:hover .vthumb{filter:grayscale(0%) contrast(1.05) brightness(.85);transform:scale(1.02)}
+  .vplay .vico{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;
+    box-shadow:0 10px 40px rgba(0,0,0,.5);transition:transform .25s,box-shadow .25s}
+  .vplay:hover .vico{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 10px 44px rgba(201,162,39,.45)}
+  .vplay .vico svg{width:30px;height:30px;margin-left:4px}
+  .vplay .vlabel{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+    font-family:'Oswald';font-weight:600;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);
+    text-shadow:0 2px 8px rgba(0,0,0,.8)}
+  @media(max-width:480px){.vplay .vico{width:64px;height:64px}.vplay .vico svg{width:24px;height:24px}}
 
-  .contact{position:relative;text-align:center;padding:130px 0;background:var(--bg2);border-top:1px solid var(--line)}
+  /* ===== Contact & buttons ===== */
+  .contact{position:relative;text-align:center;padding:clamp(86px,14vw,130px) 0;background:var(--bg2);border-top:1px solid var(--line)}
   .contact h2{font-size:clamp(40px,8vw,108px)}
   .contact h2 .gold{color:var(--gold)}
-  .contact p{color:var(--muted);max-width:540px;margin:24px auto 40px;font-size:16px}
-  .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:17px 34px;font-family:'Oswald';font-weight:600;
-    font-size:14px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:.25s;border:1px solid var(--gold)}
-  .btn-1{background:var(--gold);color:#0a0a0a}
-  .btn-1:hover{background:var(--gold2);border-color:var(--gold2)}
-  .btn-wa{background:#25D366;color:#04210f;border-color:#25D366}
-  .btn-wa:hover{background:#2ee676;border-color:#2ee676}
+  .contact p{color:var(--muted);max-width:540px;margin:24px auto 42px;font-size:16px}
+  .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;
+    padding:16px 30px;min-height:54px;border-radius:999px;
+    font-family:'Oswald';font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+    text-decoration:none;border:1px solid var(--gold);cursor:pointer;
+    transition:transform .25s,box-shadow .25s,background .25s,border-color .25s,color .25s;
+    will-change:transform}
+  .btn svg{width:17px;height:17px;flex:none}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+  .btn-1{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#0a0a0a;border-color:transparent}
+  .btn-1:hover{box-shadow:0 8px 28px rgba(201,162,39,.35)}
+  .btn-wa{background:#25D366;color:#04210f;border-color:transparent}
+  .btn-wa:hover{background:#2ee676;box-shadow:0 8px 28px rgba(37,211,102,.3)}
   .btn-2{background:transparent;color:var(--ink);border-color:var(--line)}
-  .btn-2:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-2:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 8px 24px rgba(201,162,39,.15)}
   .btn-3{background:transparent;color:var(--muted);border-color:var(--line)}
   .btn-3:hover{border-color:var(--ink);color:var(--ink)}
 
-  footer{padding:46px 0;border-top:1px solid var(--line)}
+  /* ===== Footer ===== */
+  footer{padding:46px 0 max(46px,env(safe-area-inset-bottom));border-top:1px solid var(--line)}
   footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
   footer .c{font-family:'Oswald';font-size:13px;letter-spacing:.05em;color:var(--muted2)}
   footer .c a{color:var(--muted);text-decoration:none}
+  footer .c a:hover{color:var(--gold)}
   footer .mono{font-size:18px}
 
   [data-en]{display:none}
   html[lang="en"] [data-es]{display:none}
   html[lang="en"] [data-en]{display:revert}
 
+  /* ===== Tablet ===== */
+  @media(max-width:1024px){
+    .about-grid{gap:46px}
+    .attr{padding:40px 26px 40px 0}
+    .lists,.pgrid{gap:46px}
+  }
+
+  /* ===== Mobile ===== */
   @media(max-width:880px){
-    .wrap{padding:0 22px}
-    section{padding:74px 0}
-    .hero .wrap{padding-bottom:54px}
-    .stats .grid{grid-template-columns:1fr}
-    .stat{border-right:0;border-bottom:1px solid var(--line);padding:46px 20px}
-    .stat:last-child{border-bottom:0}
+    header.nav .wrap{height:62px}
+    .mono{font-size:19px}
+    .hero .bg{background-position:center 12%}
+    .hero .wrap{padding-bottom:64px}
     .about-grid{grid-template-columns:1fr;gap:40px}
-    .about-grid .img{max-width:380px}
+    .about-grid .img{max-width:420px;margin:0 auto}
     .attrs{grid-template-columns:1fr}
-    .attr,.attr:not(:last-child){border-right:0;padding:34px 0}
+    .attr,.attr:not(:last-child){border-right:0;padding:32px 0}
     .lists{grid-template-columns:1fr;gap:40px}
     .pgrid{grid-template-columns:1fr;gap:40px}
-    .t-scroll{display:block;overflow-x:auto;white-space:nowrap}
     .hide-sm{display:none}
+    .btns{flex-direction:column;align-items:center;gap:12px}
+    .btn{width:100%;max-width:360px}
+  }
+
+  /* ===== Small phones ===== */
+  @media(max-width:480px){
+    .kick{letter-spacing:.28em;font-size:11px}
+    .hero h1{font-size:clamp(46px,15vw,60px)}
+    .stat{padding:30px 6px}
+    .stat .l{letter-spacing:.18em}
+    .quickfacts .qf{padding:13px 14px}
+    .quickfacts .l{font-size:10px;letter-spacing:.14em}
+    .attr h3{font-size:26px}
+    .contact p{margin-bottom:34px}
+    tbody td{padding:18px 14px}
+    thead th{padding:0 14px 14px}
   }
 </style>
 </head>
@@ -184,9 +259,8 @@
   <div class="wrap">
     <div class="mono">JJ<i>10</i></div>
     <div class="lang" role="group" aria-label="Language">
-      <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-      <span class="sep">/</span>
-      <button id="btn-en" onclick="setLang('en')">EN</button>
+      <button id="btn-es" class="active" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button id="btn-en" onclick="setLang('en')" aria-label="English">EN</button>
     </div>
   </div>
 </header>
@@ -212,9 +286,9 @@
 
 <div class="stats">
   <div class="wrap"><div class="grid">
-    <div class="stat"><div class="n">21</div><div class="l" data-es>Partidos</div><div class="l" data-en>Matches</div></div>
-    <div class="stat"><div class="n">11</div><div class="l" data-es>Goles</div><div class="l" data-en>Goals</div></div>
-    <div class="stat"><div class="n">9</div><div class="l" data-es>Asistencias</div><div class="l" data-en>Assists</div></div>
+    <div class="stat rev"><div class="n">21</div><div class="l" data-es>Partidos</div><div class="l" data-en>Matches</div></div>
+    <div class="stat rev"><div class="n">11</div><div class="l" data-es>Goles</div><div class="l" data-en>Goals</div></div>
+    <div class="stat rev"><div class="n">9</div><div class="l" data-es>Asistencias</div><div class="l" data-en>Assists</div></div>
   </div></div>
 </div>
 
@@ -222,7 +296,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="ln"></span><span class="kick">01 — <span data-es>El jugador</span><span data-en>The player</span></span></div>
     <div class="about-grid">
-      <div>
+      <div class="rev">
         <h2 class="sec-h"><span data-es>Arquitecto<br>del <span class="o">ataque</span></span><span data-en>Architect<br>of the <span class="o">attack</span></span></h2>
         <p data-es>Mexicano y español, de 17 años, formándose en <a class="lnk" href="https://www.rossall.org.uk/" target="_blank" rel="noopener">Rossall School</a> (Inglaterra). Como número 10 natural, lee espacios, encuentra líneas de pase entre defensas y mantiene la presión alta.</p>
         <p data-es>Su versatilidad le permite brillar como extremo derecho o como delantero. Con fluidez en español e inglés y un carácter disciplinado, está listo para el fútbol internacional.</p>
@@ -237,7 +311,7 @@
           <div class="qf"><div class="l" data-es>Nacionalidad</div><div class="l" data-en>Nationality</div><div class="v" data-es>México / España</div><div class="v" data-en>Mexico / Spain</div></div>
         </div>
       </div>
-      <div class="img"><img src="action.jpg" alt="Juan José Fernández Patín en acción"></div>
+      <div class="img rev"><img src="https://sfm7.github.io/juanjo-fernandez/action.jpg" alt="Juan José Fernández Patín en acción"></div>
     </div>
   </div>
 </section>
@@ -245,9 +319,9 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="attrs">
-      <div class="attr"><div class="n">01</div><h3 data-es>Creación</h3><h3 data-en>Creation</h3><p data-es>Identifica ventanas de pase entre líneas con una conciencia espacial excepcional.</p><p data-en>Identifies passing windows between the lines with exceptional spatial awareness.</p></div>
-      <div class="attr"><div class="n">02</div><h3 data-es>Explosividad</h3><h3 data-en>Explosiveness</h3><p data-es>Aceleración en los primeros 10 metros y especialista en el 1v1 con alta tasa de regate.</p><p data-en>Acceleration over the first 10 metres and a 1v1 specialist with a high dribbling rate.</p></div>
-      <div class="attr"><div class="n">03</div><h3 data-es>Versatilidad</h3><h3 data-en>Versatility</h3><p data-es>Ataque central, extremo derecho o "falso 9": se adapta a cualquier rol ofensivo.</p><p data-en>Central attack, right wing or "false 9": adapts to any attacking role.</p></div>
+      <div class="attr rev"><div class="n">01</div><h3 data-es>Creación</h3><h3 data-en>Creation</h3><p data-es>Identifica ventanas de pase entre líneas con una conciencia espacial excepcional.</p><p data-en>Identifies passing windows between the lines with exceptional spatial awareness.</p></div>
+      <div class="attr rev"><div class="n">02</div><h3 data-es>Explosividad</h3><h3 data-en>Explosiveness</h3><p data-es>Aceleración en los primeros 10 metros y especialista en el 1v1 con alta tasa de regate.</p><p data-en>Acceleration over the first 10 metres and a 1v1 specialist with a high dribbling rate.</p></div>
+      <div class="attr rev"><div class="n">03</div><h3 data-es>Versatilidad</h3><h3 data-en>Versatility</h3><p data-es>Ataque central, extremo derecho o "falso 9": se adapta a cualquier rol ofensivo.</p><p data-en>Central attack, right wing or "false 9": adapts to any attacking role.</p></div>
     </div>
   </div>
 </section>
@@ -255,7 +329,7 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="lists">
-      <div>
+      <div class="rev">
         <h3 data-es>Fortalezas</h3><h3 data-en>Strengths</h3>
         <ul>
           <li><span class="ix">01</span><span class="tx" data-es><b>Creatividad y visión</b> — encuentra el pase que rompe líneas.</span><span class="tx" data-en><b>Creativity & vision</b> — finds the line-breaking pass.</span></li>
@@ -264,7 +338,7 @@
           <li><span class="ix">04</span><span class="tx" data-es><b>Fortaleza mental</b> — confiado, disciplinado y orientado a la mejora.</span><span class="tx" data-en><b>Mental strength</b> — confident, disciplined and improvement-driven.</span></li>
         </ul>
       </div>
-      <div>
+      <div class="rev">
         <h3 data-es>Desarrollo</h3><h3 data-en>Development</h3>
         <ul>
           <li><span class="ix">—</span><span class="tx" data-es>Disparo de larga distancia.</span><span class="tx" data-en>Long-range shooting.</span></li>
@@ -279,8 +353,9 @@
 <section>
   <div class="wrap">
     <div class="eyebrow"><span class="ln"></span><span class="kick">02 — <span data-es>Trayectoria</span><span data-en>Career</span></span></div>
-    <h2 class="sec-h" style="margin-bottom:46px"><span data-es>El <span class="o">récord</span></span><span data-en>The <span class="o">record</span></span></h2>
-    <table class="t-scroll">
+    <h2 class="sec-h rev" style="margin-bottom:46px"><span data-es>El <span class="o">récord</span></span><span data-en>The <span class="o">record</span></span></h2>
+    <div class="table-wrap rev">
+    <table>
       <thead><tr>
         <th data-es>Competición</th><th data-en>Competition</th>
         <th data-es>Club</th><th data-en>Club</th>
@@ -295,12 +370,13 @@
         <tr class="tot"><td class="comp" data-es>Total</td><td class="comp" data-en>Total</td><td></td><td class="r">21</td><td class="r">11</td><td class="r">9</td></tr>
       </tbody>
     </table>
+    </div>
     <div class="pgrid" style="margin-top:70px">
-      <div><h3 data-es>Perfil técnico</h3><h3 data-en>Technical profile</h3>
+      <div class="rev"><h3 data-es>Perfil técnico</h3><h3 data-en>Technical profile</h3>
         <p data-es><b>Tiro:</b> finalización precisa por colocación, con potencia sólida. <b>Pase:</b> firme de corto a medio alcance; pase largo efectivo con margen de mejora. <b>Movilidad:</b> aceleración explosiva en los primeros 10 metros.</p>
         <p data-en><b>Shooting:</b> accurate placement-based finishing with solid power. <b>Passing:</b> firm over short-to-medium range; effective long passing with room to grow. <b>Mobility:</b> explosive acceleration over the first 10 metres.</p>
       </div>
-      <div><h3 data-es>Académico y personal</h3><h3 data-en>Academic & personal</h3>
+      <div class="rev"><h3 data-es>Académico y personal</h3><h3 data-en>Academic & personal</h3>
         <p data-es>Bachillerato Internacional (IB) en <a class="lnk" href="https://www.rossall.org.uk/" target="_blank" rel="noopener">Rossall School</a>, graduación 2027. Más de 350 horas de entrenamiento continuo — resiliencia física y compromiso. Sin lesiones graves registradas.</p>
         <p data-en>International Baccalaureate (IB) at <a class="lnk" href="https://www.rossall.org.uk/" target="_blank" rel="noopener">Rossall School</a>, graduating 2027. Over 350 hours of continuous training — physical resilience and commitment. No serious injuries on record.</p>
       </div>
@@ -311,11 +387,15 @@
 <section style="padding-top:0">
   <div class="wrap">
     <div class="eyebrow"><span class="ln"></span><span class="kick">03 — <span data-es>En acción</span><span data-en>In action</span></span></div>
-    <h2 class="sec-h" style="margin-bottom:46px"><span data-es>El <span class="o">highlight</span></span><span data-en>The <span class="o">highlight</span></span></h2>
-    <div class="video-box">
-      <iframe src="https://www.youtube.com/embed/PxUUTZ3Yx9A?rel=0" title="Jugadas Juan José Fernández Patín"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <h2 class="sec-h rev" style="margin-bottom:46px"><span data-es>El <span class="o">highlight</span></span><span data-en>The <span class="o">highlight</span></span></h2>
+    <div class="video-box rev" id="vbox">
+      <button class="vplay" id="vplay" aria-label="Reproducir video / Play video">
+        <img class="vthumb" src="https://i.ytimg.com/vi/PxUUTZ3Yx9A/maxresdefault.jpg"
+          onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/PxUUTZ3Yx9A/hqdefault.jpg'"
+          alt="Video highlights Juan José Fernández Patín" loading="lazy">
+        <span class="vico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="vlabel"><span data-es>Ver highlights</span><span data-en>Watch highlights</span></span>
+      </button>
     </div>
   </div>
 </section>
@@ -323,14 +403,22 @@
 <div class="contact">
   <div class="wrap">
     <div class="kick" style="margin-bottom:20px"><span data-es>Contacto y disponibilidad</span><span data-en>Contact & availability</span></div>
-    <h2><span data-es>Su <span class="gold">futuro</span><br>empieza aquí</span><span data-en>His <span class="gold">future</span><br>starts here</span></h2>
+    <h2 class="rev"><span data-es>Su <span class="gold">futuro</span><br>empieza aquí</span><span data-en>His <span class="gold">future</span><br>starts here</span></h2>
     <p data-es>Disponible para pruebas y oportunidades en España e Inglaterra.</p>
     <p data-en>Available for trials and opportunities in Spain and England.</p>
-    <div class="btns">
-      <a class="btn btn-1" href="mailto:juanjo.fernandez10@icloud.com"><span data-es>Escribir email</span><span data-en>Send email</span></a>
-      <a class="btn btn-wa" href="https://wa.me/447842407415" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn-2" href="tel:+447842407415"><span data-es>Llamar · +44 7842 407415</span><span data-en>Call · +44 7842 407415</span></a>
-      <a class="btn btn-3" href="Ficha-Juan-Jose-Fernandez-Patin.pdf" download><span data-es>Descargar ficha PDF</span><span data-en>Download PDF</span></a>
+    <div class="btns rev">
+      <a class="btn btn-1" href="mailto:juanjo.fernandez10@icloud.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <span data-es>Escribir email</span><span data-en>Send email</span></a>
+      <a class="btn btn-wa" href="https://wa.me/447842407415" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+        WhatsApp</a>
+      <a class="btn btn-2" href="tel:+447842407415">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-es>Llamar · +44 7842 407415</span><span data-en>Call · +44 7842 407415</span></a>
+      <a class="btn btn-3" href="https://sfm7.github.io/juanjo-fernandez/Ficha-Juan-Jose-Fernandez-Patin.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        <span data-es>Descargar ficha PDF</span><span data-en>Download PDF</span></a>
     </div>
   </div>
 </div>
@@ -355,6 +443,34 @@ function setLang(l){
   setLang(saved || (nav==='en'?'en':'es'));
   var nav2=document.getElementById('nav');
   addEventListener('scroll',function(){nav2.classList.toggle('solid',scrollY>60)},{passive:true});
+
+  /* Reveal on scroll */
+  var els=document.querySelectorAll('.rev');
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  }else{
+    els.forEach(function(el){el.classList.add('in')});
+  }
+
+  /* Video: thumbnail -> player (o YouTube directo si es archivo local) */
+  var vp=document.getElementById('vplay');
+  if(vp){vp.addEventListener('click',function(){
+    if(location.protocol==='file:'){
+      window.open('https://www.youtube.com/watch?v=PxUUTZ3Yx9A','_blank');return;
+    }
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube.com/embed/PxUUTZ3Yx9A?rel=0&autoplay=1';
+    f.title='Jugadas Juan José Fernández Patín';
+    f.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+    f.setAttribute('allowfullscreen','');
+    var box=document.getElementById('vbox');
+    box.innerHTML='';box.appendChild(f);
+  })}
 })();
 </script>
 </body>
